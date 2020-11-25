@@ -54,19 +54,28 @@ public class EventDemo {
     * @return The number of guests provided by the user.
     */
     public static int askUserForGuests() {
-        int guests;
+        int guests = 0;
         final int MIN_GUESTS = 5;
         final int MAX_GUESTS = 100;
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter number of guests >> ");
-        guests = input.nextInt();
-        while (guests < MIN_GUESTS || guests > MAX_GUESTS) {
-            System.out.println("The number of guests must be between " +
-                MIN_GUESTS + " and " + MAX_GUESTS);
-            System.out.print("Please renter >> ");
-            guests = input.nextInt();
+        boolean isNumber = false;
+        while(!isNumber){
+            try{
+                Scanner input = new Scanner(System.in);
+                System.out.print("Enter number of guests >> ");
+                guests = input.nextInt();
+                while (guests < MIN_GUESTS || guests > MAX_GUESTS) {
+                    System.out.println("The number of guests must be between " +
+                        MIN_GUESTS + " and " + MAX_GUESTS);
+                    System.out.print("Please renter >> ");
+                    guests = input.nextInt();
+                  input.nextLine();
+                }
+                isNumber = true;
+            }
+            catch(InputMismatchException mistake){
+                System.out.println("Whoops! Please be sure to make a numerical selection");
+            }
         }
-        input.nextLine();
         return guests;
     }
 
@@ -84,6 +93,7 @@ public class EventDemo {
         }
         System.out.print(">> ");
         type = input.nextInt();
+        input.nextLine();
         System.out.println();
         return type;
     }
@@ -118,6 +128,7 @@ public class EventDemo {
                 System.out.print(">> ");
                 Scanner input = new Scanner(System.in);
                 decision = input.nextInt();
+                input.nextLine();
                 System.out.println();
                 if(decision == 1){
                     sortChoice = exit;
@@ -148,11 +159,13 @@ public class EventDemo {
         System.out.print(">> ");
         Scanner input = new Scanner(System.in);
         choice = input.nextInt();
+        input.nextLine();
         System.out.println();
         while(!(0 < choice && choice < 4)){
             System.out.println("That selection is invalid. Please select from one of the three sort options. (1 to sort by event number, 2 to sort by number of guests, or 3 by event type)");
             System.out.print(">> ");
             choice = input.nextInt();
+            input.nextLine();
             System.out.println();
         }
         return choice;

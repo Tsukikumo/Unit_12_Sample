@@ -38,16 +38,26 @@ public class WeddingEventDemo extends EventDemo {
     */
     public static int askUserForAppetizerChoice(){
         int choice = -1;
-        while(choice >= WeddingEvent.APPETIZER_CHOICES.length || choice < 0){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please select your appetizer from the following options: ");
-            for(int sub = 0; sub < WeddingEvent.APPETIZER_CHOICES.length; sub++){
-                System.out.println("Enter " + sub + " for " + WeddingEvent.APPETIZER_CHOICES[sub]);
+        boolean isNumber = false;
+        while(!isNumber){
+            try{
+                while(choice >= WeddingEvent.APPETIZER_CHOICES.length || choice < 0){
+                    Scanner input = new Scanner(System.in);
+                    System.out.println("Please select your appetizer from the following options: ");
+                    for(int sub = 0; sub < WeddingEvent.APPETIZER_CHOICES.length; sub++){
+                        System.out.println("Enter " + sub + " for " + WeddingEvent.APPETIZER_CHOICES[sub]);
+                }
+                System.out.print(">> ");
+                choice = input.nextInt();
+                input.nextLine();
+                isNumber = true;
+                }
             }
-            System.out.print(">> ");
-            choice = input.nextInt();
-            System.out.println();
+            catch(InputMismatchException mistake){
+                System.out.println("Whoops! Please be sure to enter a numerical choice");
+            }
         }
+        System.out.println();
         return choice;
     }
 
@@ -60,6 +70,7 @@ public class WeddingEventDemo extends EventDemo {
     */
     public static int askUserForEntree(int one){
         int choice = -1;
+        boolean isNumber = false;
         String firstOrSecond;
         if(one == -1){
             firstOrSecond = "first";
@@ -67,27 +78,36 @@ public class WeddingEventDemo extends EventDemo {
         else{
             firstOrSecond = "second";
         }
-        while(choice >= WeddingEvent.ENTREE_CHOICES.length || choice < 0){
-            Scanner input = new Scanner(System.in);
-            if(firstOrSecond == "first"){
-                System.out.println("Choose your " + firstOrSecond + " entree from the following entree options: ");
-            }
-            else{
-                System.out.println("Choose your " + firstOrSecond + " entree from the following entree options (different from first choice) : ");
-            }
-            for(int sub = 0; sub < WeddingEvent.ENTREE_CHOICES.length; sub++){
-                if(sub == one){
-                    System.out.println("Enter " + sub + " for " + WeddingEvent.ENTREE_CHOICES[sub] + "----[First entree chosen]");
+        while(!isNumber){
+            try {
+                while(choice >= WeddingEvent.ENTREE_CHOICES.length || choice < 0){
+                    Scanner input = new Scanner(System.in);
+                    if(firstOrSecond == "first"){
+                        System.out.println("Choose your " + firstOrSecond + " entree from the following entree options: ");
+                    }
+                    else{
+                        System.out.println("Choose your " + firstOrSecond + " entree from the following entree options (different from first choice) : ");
+                    }
+                    for(int sub = 0; sub < WeddingEvent.ENTREE_CHOICES.length; sub++){
+                        if(sub == one){
+                            System.out.println("Enter " + sub + " for " + WeddingEvent.ENTREE_CHOICES[sub] + "----[First entree chosen]");
+                        }
+                        else{
+                            System.out.println("Enter " + sub + " for " + WeddingEvent.ENTREE_CHOICES[sub]);
+                        }
+                    } 
+                    System.out.print(">> ");
+                    choice = input.nextInt();
+                    input.nextLine();
+                    choice = checkForDuplicate(choice, one); 
+                    isNumber = true;
                 }
-                else{
-                    System.out.println("Enter " + sub + " for " + WeddingEvent.ENTREE_CHOICES[sub]);
-                }
-            } 
-            System.out.print(">> ");
-            choice = input.nextInt();
-            System.out.println();
-            choice = checkForDuplicate(choice, one); 
+            }
+            catch(InputMismatchException mistake){
+                System.out.println("Whoops! Please be sure to enter a numerical choice");
+            }
         }
+        System.out.println();
         return choice;
     }
 
@@ -109,15 +129,25 @@ public class WeddingEventDemo extends EventDemo {
     */
     public static int askForDessert(){
         int choice = -1;
-        while(choice >= WeddingEvent.DESSERT_CHOICES.length || choice < 0){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please select your Dessert from the following options: ");
-            for(int sub = 0; sub < WeddingEvent.DESSERT_CHOICES.length; sub++){
-                System.out.println("Enter " + sub + " for " + WeddingEvent.DESSERT_CHOICES[sub]);
+        boolean isNumber = false;
+        while(!isNumber){
+            try{
+                while(choice >= WeddingEvent.DESSERT_CHOICES.length || choice < 0){
+                    Scanner input = new Scanner(System.in);
+                    System.out.println("Please select your Dessert from the following options: ");
+                    for(int sub = 0; sub < WeddingEvent.DESSERT_CHOICES.length; sub++){
+                        System.out.println("Enter " + sub + " for " + WeddingEvent.DESSERT_CHOICES[sub]);
+                    }
+                    System.out.print(">> ");
+                    choice = input.nextInt();
+                    input.nextLine();
+                    System.out.println();
+                    isNumber = true;
+                }
             }
-            System.out.print(">> ");
-            choice = input.nextInt();
-            System.out.println();
+            catch(InputMismatchException mistake){
+                System.out.println("Whoops! Please be sure to enter a numerical choice");
+            }
         }
         return choice;
     }

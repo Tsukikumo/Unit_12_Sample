@@ -111,17 +111,16 @@ public class StaffWeddingEventDemo extends WeddingEventDemo {
         boolean isNumber = false;
         while(!isNumber){
             try {
-            System.out.print("Please enter the rate they will be paid >> ");
-            Scanner input = new Scanner(System.in);
-            rate = input.nextDouble();
-            input.nextLine(); 
-            isNumber = true;
+                System.out.print("Please enter the rate they will be paid >> ");
+                Scanner input = new Scanner(System.in);
+                rate = input.nextDouble();
+                input.nextLine(); 
+                isNumber = true;
             }
-        catch(InputMismatchException mistake)
-        {
-            System.out.println("Whoops! Please be sure to enter a numerical rate of pay.");
+            catch(InputMismatchException mistake){
+                System.out.println("Whoops! Please be sure to enter a numerical rate of pay.");
+            }
         }
-       }
         System.out.println();
         return rate;
     } 

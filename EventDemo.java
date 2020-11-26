@@ -68,7 +68,7 @@ public class EventDemo {
                         MIN_GUESTS + " and " + MAX_GUESTS);
                     System.out.print("Please renter >> ");
                     guests = input.nextInt();
-                  input.nextLine();
+                    input.nextLine();
                 }
                 isNumber = true;
             }

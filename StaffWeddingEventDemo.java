@@ -49,15 +49,16 @@ public class StaffWeddingEventDemo extends WeddingEventDemo {
             servers = setNumbersOfServers(isBuffet, guests);
             bartenders = setNumberOfBartenders(guests);
             int number = servers + bartenders + 1;
-            weddings[x].setEmployees(number);
+            Employee[] employees = new Employee[number];
             if(servers > 0){
-                staffServers(servers, weddings, x);  
+                staffServers(servers, employees);  
             }
             if(bartenders > 0){
-               staffBartenders(bartenders, weddings, x, servers);
+               staffBartenders(bartenders, employees, servers);
             }
             System.out.println("Manager");
-            weddings[x].getEmployees()[number - 1] = new Manager(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
+            employees[number - 1] = new Manager(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
+            weddings[x].setEmployees(employees);
         } 
     }
 
@@ -179,14 +180,13 @@ public class StaffWeddingEventDemo extends WeddingEventDemo {
     * This staffs the servers for the event based on number needed 
     *
     * @parem servers is previously set number of servers
-    * @param weddings is the wedding array to staff 
-    * @param x is the current array number 
+    * @param employees is the employee array to staff 
     */
-    public static void staffServers(int servers, WeddingEvent[] weddings, int x){
-        int y;
-        for(y = 0; y <= servers - 1; ++y){
+    public static void staffServers(int servers, Employee[] employees){
+        int x;
+        for(x = 0; x <= servers - 1; ++x){
             System.out.println("Server");
-            weddings[x].getEmployees()[y] = new Server(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
+            employees[x] = new Server(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
         }
     }
 
@@ -195,16 +195,15 @@ public class StaffWeddingEventDemo extends WeddingEventDemo {
     * This staffs the bartenders for the event based on number needed 
     *
     * @parem bartenders is previously set number of bartenders 
-    * @param weddings is the wedding array to staff 
-    * @param x is the current array number
+    * @param employees is the employee array to staff 
     * @parem servers is previously set number of servers 
     */
-    public static void staffBartenders(int bartenders, WeddingEvent[] weddings, int x, int servers){
-        int y;
-        for(y = 0; y <= bartenders - 1; ++y){
+    public static void staffBartenders(int bartenders, Employee[] employees, int servers){
+        int x;
+        for(x = 0; x <= bartenders - 1; ++x){
             System.out.println("Bartender");
             int theServers = servers;
-            weddings[x].getEmployees()[theServers + y] = new Bartender(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
+            employees[theServers + x] = new Bartender(askUserForEmployeeID(),askUserForEmployeeFirstName(),askUserForEmployeeLastName(),askUserForRate());
         }
     }
     

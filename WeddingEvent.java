@@ -107,8 +107,8 @@ public class WeddingEvent extends Event{
     *
     * @parem number is the total number of employees
     */
-    protected void setEmployees(int number){
-        employees = new Employee[number];
+    protected void setEmployees(Employee[] tempEmployees){
+        employees = tempEmployees;
     }
 
     /**
